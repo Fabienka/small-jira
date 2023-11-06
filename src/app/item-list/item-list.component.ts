@@ -1,7 +1,11 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemComponent } from '../item/item.component';
 import { ItemDetailComponent } from '../item-detail/item-detail.component';
+import { PostService } from '../app.post-service';
+import {Post,User, Comment, Item} from '../items'
+import { RouterModule } from '@angular/router';
+
 
 
 @Component({
@@ -9,21 +13,44 @@ import { ItemDetailComponent } from '../item-detail/item-detail.component';
   standalone: true,
   imports: [CommonModule,
             ItemComponent,
-          ItemDetailComponent],
+          ItemDetailComponent,
+        RouterModule],
   template: `
   <div class="item-list-container">
-    
-    <ng-template ngFor let-item [ngForOf]=listArray let-i="index" >
-    <div class="row">
-      <app-item></app-item>
-    </div>
-    </ng-template>
-    item-list works!
+    <app-item
+    *ngFor="let item of itemList"
+    [post]="item">
+  </app-item>
   </div>
   `,
   styleUrls: ['./item-list.component.scss']
 })
 export class ItemListComponent {
-    listArray = [1,2,3,4,5,6,7,8,9,10];
+  itemList: Item[] = [];
+  postList: Post[] = [];
+  postService: PostService = inject(PostService);
+  
+  constructor() {
+    this.init();
+  }
+  async init() {
+    try {
+      this.postList = await this.postService.getAllPosts();
+      for (const post of this.postList) {
+        const item = await this.postService.mergePostToItem(post);
+        this.itemList.push(item);
+      }
+    } catch (error) {
+      console.error('Chyba při načítání dat:', error);
+    }
+  }
+
+  /*ngOnInit(): void {
+    this.postService.getPosts().subscribe(posts => {
+      this.posts = posts;
+      console.log(posts);
+    });
+    }*/
+
 
 }

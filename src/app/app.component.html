@@ -2,7 +2,14 @@
 <div class="container text-center">
   <div class="row justify-content-center">
     <div class="col-sm-10">
-      <app-item-list></app-item-list>
+      <a [routerLink]="['/']">
+        <header class="brand-name">
+          <img class="brand-logo" src="/assets/logo.svg" alt="logo" aria-hidden="true">
+        </header>
+      </a>
+      <section class="content">
+        <router-outlet></router-outlet>
+      </section>
     </div>
   </div>
 </div>
