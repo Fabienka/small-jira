@@ -14,11 +14,11 @@ import { CapitalizePipe } from '../capitalize.pipe';
     <h2> {{post?.title | titlecase}} </h2>
     <h3> <i>by {{author}}</i></h3>
     <hr>
-    <p style="font-size: larger;"> {{post?.body | capitalize}} 
+    <p> {{post?.body | capitalize}} 
     </p>
     <hr>
     <h5>Comments:</h5>
-    <div style="text-align: left;" *ngFor="let comment of commentList">
+    <div class="item-detail-comment" *ngFor="let comment of commentList">
       <p><i>{{ comment.email }}</i></p>
       <p><b>{{ comment.name | capitalize }}</b></p>
       <p>{{ comment.body | capitalize}}</p>

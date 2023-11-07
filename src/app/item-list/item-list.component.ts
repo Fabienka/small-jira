@@ -21,7 +21,7 @@ import { RouterModule } from '@angular/router';
     *ngFor="let item of itemList"
     [post]="item">
   </app-item>
-    <a href="/#top"><img class="backTop-logo" src="/assets/backToTop.svg" alt="logo" aria-hidden="true"></a>
+    <a href="/#top"><img class="backTop-logo" src="/assets/backToTop.svg" alt="backToTop" aria-hidden="true"></a>
   </div>
   `,
   styleUrls: ['./item-list.component.scss']

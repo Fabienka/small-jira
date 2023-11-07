@@ -12,14 +12,14 @@ import { CapitalizePipe } from '../capitalize.pipe';
   standalone: true,
   imports: [CommonModule, ItemDetailComponent, RouterModule, CapitalizePipe],
   template: `
-    <div class="item-card small-jira-item">
+    <div class="small-jira-item">
       <h4 class="item-card-title"> {{post.title | titlecase}}</h4>
       <span class="item-card-author"> by <b>{{post.author | uppercase}}</b></span>
       <hr>
       <div class="item-card-description"> {{(post.body | slice:0:120) +'...' | capitalize}}  </div>
-      <div class="row" style="width: auto; max-width: 100%">
-        <div class="item-card-description" style="width: 50%;"> <a [routerLink]="['/detail', post.postId]">See more...</a> </div>
-        <div class="item-card-comments" style="width: 50%;"> Comments: {{commentsCount}} </div>
+      <div class="row">
+        <div class="item-card-link"> <a [routerLink]="['/detail', post.postId]">See more...</a> </div>
+        <div class="item-card-comments"> Comments: {{commentsCount}} </div>
       </div>
    </div>
   `,
