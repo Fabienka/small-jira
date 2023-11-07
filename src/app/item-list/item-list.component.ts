@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ItemComponent } from '../item/item.component';
 import { ItemDetailComponent } from '../item-detail/item-detail.component';
 import { PostService } from '../app.post-service';
-import {Post,User, Comment, Item} from '../items'
+import {Post, Item} from '../items'
 import { RouterModule } from '@angular/router';
 
 
@@ -45,13 +45,4 @@ export class ItemListComponent {
       console.error('Chyba při načítání dat:', error);
     }
   }
-
-  /*ngOnInit(): void {
-    this.postService.getPosts().subscribe(posts => {
-      this.posts = posts;
-      console.log(posts);
-    });
-    }*/
-
-
 }

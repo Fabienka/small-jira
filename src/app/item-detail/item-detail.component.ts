@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { AfterContentInit, Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../app.post-service';
@@ -12,7 +12,7 @@ import { CapitalizePipe } from '../capitalize.pipe';
   template: `
   <div class="small-jira-item">
     <h2> {{post?.title | titlecase}} </h2>
-    <h3> <i>by Author</i></h3>
+    <h3> <i>by {{author}}</i></h3>
     <hr>
     <p style="font-size: larger;"> {{post?.body | capitalize}} 
     </p>
@@ -33,25 +33,22 @@ export class ItemDetailComponent {
   postService = inject(PostService);
   post: Post | undefined;
   commentList: Comment[] = [];
+  author: string | undefined;
 
   
   constructor() {
     const itemId = parseInt(this.route.snapshot.params['id'], 10);
     this.postService.getPostById(itemId).then(post => {
       this.post = post;
+      if (this.post) {
+      this.postService.getUserById(this.post.userId).then(author => {
+        this.author = author?.name
+      } )
+    }
     })
     this.postService.getCommentByPostId(itemId).then(commentList => {
       this.commentList = commentList
       console.log(this.commentList)
     });
-    //this.init(itemId);
-  }
-  async init(id: number) {
-    try {
-     
-      console.log(this.commentList);
-    } catch (error) {
-      console.error('Chyba při načítání dat:', error);
-    }
   }
 }
