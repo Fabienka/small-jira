@@ -3,39 +3,28 @@ import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { PostService } from '../app.post-service';
 import { Post, Comment } from '../items';
+import { CapitalizePipe } from '../capitalize.pipe';
 
 @Component({
   selector: 'app-item-detail',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, CapitalizePipe],
   template: `
   <div class="small-jira-item">
     <h2> {{post?.title | titlecase}} </h2>
     <h3> <i>by Author</i></h3>
     <hr>
-    <p style="font-size: larger;"> {{post?.body}} 
+    <p style="font-size: larger;"> {{post?.body | capitalize}} 
     </p>
     <hr>
     <h5>Comments:</h5>
     <div style="text-align: left;" *ngFor="let comment of commentList">
       <p><i>{{ comment.email }}</i></p>
-      <p><b>{{ comment.name }}</b></p>
-      <p>{{ comment.body }}</p>
+      <p><b>{{ comment.name | capitalize }}</b></p>
+      <p>{{ comment.body | capitalize}}</p>
       <hr>
     </div>
   </div>
-      <!-- Modal   
-        <div class="modal-dialog" role="document">
-          <div>
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-            </div>
-            <div class="modal-body">
-              {{ post?.title }}
-            </div>
-          </div>
-        </div>-->   
-
   `,
   styleUrls: ['./item-detail.component.scss']
 })

@@ -5,7 +5,7 @@ import { ItemListComponent } from './item-list/item-list.component';
 import routeConfig from './app-routing.module';
 
 @NgModule({
-  declarations: [
+  declarations: [ 
   ],
   imports: [
     BrowserModule,

@@ -22,5 +22,6 @@ export interface Item {
     title: string;
     author: string | undefined;
     body: string;
+    comments: Comment[];
 
 }

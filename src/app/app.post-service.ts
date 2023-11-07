@@ -8,21 +8,7 @@ export class PostService {
   private postsUrl = 'https://jsonplaceholder.typicode.com/posts';
   private usersUrl = 'https://jsonplaceholder.typicode.com/users';
   private commentsUrl = 'https://jsonplaceholder.typicode.com/comments';
-/*
-  constructor(private http: HttpClient) { }
 
-  getPosts(): Observable<any[]> {
-    return this.http.get<any[]>(this.postsUrl);
-  }
-
-  getUsers(): Observable<any[]> {
-    return this.http.get<any[]>(this.usersUrl);
-  }
-
-  getComments(): Observable<any[]> {
-    return this.http.get<any[]>(this.commentsUrl);
-  }
-  */
   async getAllPosts(): Promise<Post[]> {
     const data = await fetch(this.postsUrl);
     return await data.json() ?? [];
@@ -47,13 +33,17 @@ export class PostService {
   async mergePostToItem(post: Post ): Promise<Item> {
     let item: Item;
     let user: User | undefined;
+    let commentList: Comment[] = [];
      user = await this.getUserById(post.userId)
+     commentList = await this.getCommentByPostId(post.id)
+     
       item = {
         id:post.id,
         title:post.title,
         postId: post.id,
         author: (user == undefined ? undefined : user.name),
-        body: post.body
+        body: post.body,
+        comments: commentList
       }
 
     return item;

@@ -1,22 +1,22 @@
-import { Component, Input } from '@angular/core';
+import { AfterContentInit, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemDetailComponent } from '../item-detail/item-detail.component';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {Item} from '../items'
 import { RouterModule } from '@angular/router';
+import { CapitalizePipe } from '../capitalize.pipe';
 
 
 
 @Component({
   selector: 'app-item',
   standalone: true,
-  imports: [CommonModule, ItemDetailComponent, RouterModule],
+  imports: [CommonModule, ItemDetailComponent, RouterModule, CapitalizePipe],
   template: `
     <div class="item-card small-jira-item">
       <h4 class="item-card-title"> {{post.title | titlecase}}</h4>
       <span class="item-card-author"> by <b>{{post.author | uppercase}}</b></span>
       <hr>
-      <div class="item-card-description"> {{(post.body | slice:0:120) +'...'}}  </div>
+      <div class="item-card-description"> {{(post.body | slice:0:120) +'...' | capitalize}}  </div>
       <div class="row" style="width: auto; max-width: 100%">
         <div class="item-card-description" style="width: 50%;"> <a [routerLink]="['/detail', post.postId]">See more...</a> </div>
         <div class="item-card-comments" style="width: 50%;"> Comments: {{commentsCount}} </div>
@@ -25,14 +25,16 @@ import { RouterModule } from '@angular/router';
   `,
   styleUrls: ['./item.component.scss']
 })
-export class ItemComponent {
+export class ItemComponent implements AfterContentInit {
       @Input() post!: Item;
-      @Input() commentsCount!: number;
+      commentsCount = 0;
   
-    constructor(private modalService: NgbModal) {}
-
-    openModal() {
-      let modalRef = this.modalService.open(ItemDetailComponent);
-      //modalRef.componentInstance.data = yourData;  Předání dat do modální komponenty (pokud potřebujete).
+    constructor() {
     }
+    ngAfterContentInit(): void {
+      if (this.post) {
+        this.commentsCount = this.post.comments.length;
+      }
+    }
+    
 }
