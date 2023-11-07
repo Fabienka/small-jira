@@ -1,11 +1,14 @@
 div.item-card {
     box-shadow: inset -2px 2px 0px 0px #d3d3bd, -5px 5px 6px #d3d3bd;
-    cursor: pointer;
-    border-radius: 0.3rem;
-    background-color: beige;
-    margin: .5rem;
 
 }
 .item-card-title {
 
+}
+div.small-jira-item {
+    background-color: beige;
+     border-radius: .5rem;
+    padding: 1.3rem;
+    margin: .5rem;
+    box-shadow: inset -2px 2px 0px 0px #d3d3bd, -5px 5px 6px #d3d3bd;
 }

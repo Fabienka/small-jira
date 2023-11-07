@@ -12,7 +12,8 @@ export interface User {
 export interface Comment {
     id: number;
     postId: number;
-    userId: number;
+    email: string;
+    name: string;
     body: string;
 }
 export interface Item {

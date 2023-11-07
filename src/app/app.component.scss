@@ -1,8 +1,18 @@
 .brand-logo {
-    width: 100px;
+    max-width: 35px;
     height: auto;
-    margin: 1rem;
+    margin: 0 .5rem .8rem .5rem;
 }
-.brand-logo svg {
-    color: rgb(87, 0, 128);
+.brand-name h1 {
+    margin-top: .5rem;
+    display: inline-block;
+    color: black;
+}
+a {
+    text-decoration: none;
+}
+.small-jira-item {
+    background-color: beige;
+     border-radius: .5rem;
+      padding: 1.3rem;
 }

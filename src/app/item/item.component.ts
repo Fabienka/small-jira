@@ -12,10 +12,11 @@ import { RouterModule } from '@angular/router';
   standalone: true,
   imports: [CommonModule, ItemDetailComponent, RouterModule],
   template: `
-    <div class="item-card">
+    <div class="item-card small-jira-item">
       <h4 class="item-card-title"> {{post.title | titlecase}}</h4>
-      <span class="item-card-author"> {{post.author | uppercase}}</span>
-      <div class="item-card-description"> {{(post.body | slice:0:75) +'...'}}  </div>
+      <span class="item-card-author"> by <b>{{post.author | uppercase}}</b></span>
+      <hr>
+      <div class="item-card-description"> {{(post.body | slice:0:120) +'...'}}  </div>
       <div class="row" style="width: auto; max-width: 100%">
         <div class="item-card-description" style="width: 50%;"> <a [routerLink]="['/detail', post.postId]">See more...</a> </div>
         <div class="item-card-comments" style="width: 50%;"> Comments: {{commentsCount}} </div>
