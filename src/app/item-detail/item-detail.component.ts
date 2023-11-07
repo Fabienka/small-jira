@@ -48,7 +48,6 @@ export class ItemDetailComponent {
     })
     this.postService.getCommentByPostId(itemId).then(commentList => {
       this.commentList = commentList
-      console.log(this.commentList)
     });
   }
 }
