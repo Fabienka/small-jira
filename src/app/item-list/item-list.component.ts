@@ -3,46 +3,38 @@ import { CommonModule } from '@angular/common';
 import { ItemComponent } from '../item/item.component';
 import { ItemDetailComponent } from '../item-detail/item-detail.component';
 import { PostService } from '../app.post-service';
-import {Post, Item} from '../items'
-import { RouterModule } from '@angular/router';
+import { Item} from '../items'
+import { Router, RouterModule } from '@angular/router';
 
 
 
 @Component({
   selector: 'app-item-list',
   standalone: true,
-  imports: [CommonModule,
-            ItemComponent,
-          ItemDetailComponent,
-        RouterModule],
-  template: `
-  <div class="item-list-container">
-    <app-item
-    *ngFor="let item of itemList"
-    [post]="item">
-  </app-item>
-    <a href="/#top"><img class="backTop-logo" src="/assets/backToTop.svg" alt="backToTop" aria-hidden="true"></a>
-  </div>
-  `,
+  imports: [
+    CommonModule,
+    ItemComponent,
+    ItemDetailComponent,
+    RouterModule],
+  templateUrl: './item-list.component.html',
   styleUrls: ['./item-list.component.scss']
 })
 export class ItemListComponent {
-  itemList: Item[] = [];
-  postList: Post[] = [];
   postService: PostService = inject(PostService);
+  itemList: Item[] = [];
   
-  constructor() {
-    this.init();
+  constructor(
+    private router: Router
+  ) {
+    this.getData();
   }
-  async init() {
+  async getData() {
     try {
-      this.postList = await this.postService.getAllPosts();
-      for (const post of this.postList) {
-        const item = await this.postService.mergePostToItem(post);
-        this.itemList.push(item);
-      }
+      this.itemList = await this.postService.getData();
+      console.log(this.itemList)
     } catch (error) {
-      console.error('Chyba při načítání dat:', error);
+      this.router.navigate(['/not-found']);
+      console.error("Chyba při získávání dat:", error);
     }
   }
 }

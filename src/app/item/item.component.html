@@ -1,0 +1,10 @@
+<div class="small-jira-item">
+    <h4 class="item-card-title"> {{item.post.title | titlecase}}</h4>
+    <span class="item-card-author"> by <b>{{item.author.name | uppercase}}</b></span>
+    <hr>
+    <div class="item-card-description"> {{(item.post.body | slice:0:120) +'...' | capitalize}}  </div>
+    <div class="row">
+      <div class="item-card-link"> <a [routerLink]="['/detail', item.id]">See more...</a> </div>
+      <div class="item-card-comments"> Comments: {{commentsCount}} </div>
+    </div>
+ </div>

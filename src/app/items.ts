@@ -5,8 +5,8 @@ export interface Post {
     body: string;
 }
 export interface User {
-    id: number | undefined
-    name: string | undefined;
+    id: number;
+    name: string;
 }
 
 export interface Comment {
@@ -16,12 +16,11 @@ export interface Comment {
     name: string;
     body: string;
 }
+
+
 export interface Item {
     id: number;
-    postId: number;
-    title: string;
-    author: string | undefined;
-    body: string;
-    comments: Comment[];
-
+    post: Post;
+    author: User;
+    comments: Comment[]
 }
