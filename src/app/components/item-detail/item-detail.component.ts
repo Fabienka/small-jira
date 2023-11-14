@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
-import { PostService } from '../app.post-service';
-import { Post, Comment } from '../items';
-import { CapitalizePipe } from '../capitalize.pipe';
+import { PostService } from '../../services/app.post-service';
+import { Post, Comment } from '../../interfaces/items';
+import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 
 @Component({
   selector: 'app-item-detail',

@@ -1,9 +1,9 @@
 import { AfterContentInit, Component, Input } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemDetailComponent } from '../item-detail/item-detail.component';
-import { Item } from '../items'
+import { Item } from '../../interfaces/items'
 import { RouterModule } from '@angular/router';
-import { CapitalizePipe } from '../capitalize.pipe';
+import { CapitalizePipe } from '../../pipes/capitalize.pipe';
 
 
 

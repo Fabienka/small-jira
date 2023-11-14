@@ -2,8 +2,8 @@ import { Component, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ItemComponent } from '../item/item.component';
 import { ItemDetailComponent } from '../item-detail/item-detail.component';
-import { PostService } from '../app.post-service';
-import { Item} from '../items'
+import { PostService } from '../../services/app.post-service';
+import { Item} from '../../interfaces/items'
 import { Router, RouterModule } from '@angular/router';
 
 

@@ -1,8 +1,8 @@
 
 import { Routes } from '@angular/router';
-import { ItemListComponent } from './item-list/item-list.component';
-import { ItemDetailComponent } from './item-detail/item-detail.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { ItemListComponent } from '../components/item-list/item-list.component';
+import { ItemDetailComponent } from '../components/item-detail/item-detail.component';
+import { PageNotFoundComponent } from '../components/page-not-found/page-not-found.component';
 
 const routeConfig: Routes = [
   {
